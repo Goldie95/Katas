@@ -4,13 +4,39 @@ import getpass
 password = ""
 passwordGuess = ""
 allowedGuesses = 5
-welcome = """
-************************************************************
-*                                                          *
-*            Welcome to the Weird Wordle Game              *
-*                                                          *
-************************************************************
 
+# Below I used an Ascii art text generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+# Just copy and paste into a string varible, dont forget to use x3 quatation marks (""") at open and close to use multiline text.
+welcome = """
+*******************************************************************
+*    __    __     _         _   __    __              _ _         *
+*   / / /\ \ \___(_)_ __ __| | / / /\ \ \___  _ __ __| | | ___    *
+*   \ \/  \/ / _ \ | '__/ _` | \ \/  \/ / _ \| '__/ _` | |/ _ \   *
+*    \  /\  /  __/ | | | (_| |  \  /\  / (_) | | | (_| | |  __/   *
+*     \/  \/ \___|_|_|  \__,_|   \/  \/ \___/|_|  \__,_|_|\___|   *
+*                                                                 *
+*******************************************************************
+"""
+playerOneWins = """
+______ _                         __    _    _ _           _ 
+| ___ \ |                       /  |  | |  | (_)         | |
+| |_/ / | __ _ _   _  ___ _ __  `| |  | |  | |_ _ __  ___| |
+|  __/| |/ _` | | | |/ _ \ '__|  | |  | |/\| | | '_ \/ __| |
+| |   | | (_| | |_| |  __/ |    _| |_ \  /\  / | | | \__ \_|
+\_|   |_|\__,_|\__, |\___|_|    \___/  \/  \/|_|_| |_|___(_)
+                __/ |                                       
+               |___/ 
+"""
+
+playerTwoWins = """
+______ _                         _____   _    _ _           _ 
+| ___ \ |                       / __  \ | |  | (_)         | |
+| |_/ / | __ _ _   _  ___ _ __  `' / /' | |  | |_ _ __  ___| |
+|  __/| |/ _` | | | |/ _ \ '__|   / /   | |/\| | | '_ \/ __| |
+| |   | | (_| | |_| |  __/ |    ./ /___ \  /\  / | | | \__ \_|
+\_|   |_|\__,_|\__, |\___|_|    \_____/  \/  \/|_|_| |_|___(_)
+                __/ |                                         
+               |___/
 """
 
 if __name__ == "__main__":
@@ -72,6 +98,10 @@ if __name__ == "__main__":
                 pattern += "x"
         return ''.join(pattern)      
  
+ # This function is to simply start a new game at the end of a completed game.
+    def startOver():
+        input("Press Enter to start a new game...")
+ 
  # This function contains a while loop to iterate through the number of guesses and check has two possible outcomes
  # outcome 1 - Password is guessed correctly within the allowed guesses - Player 2 wins.
  # outcome 2 - Password isnt guessed correctly wihtin the allowed guesses - Player 1 wins and word is displayed.         
@@ -92,14 +122,18 @@ if __name__ == "__main__":
         
             if password == passwordGuess:
                 if guessNumber < (allowedGuesses + 1):
-                    print ("Player 2 wins. It took you " + str(guessNumber - 1) + " guesses to find the weird wordle.")
+                    print (playerTwoWins)
+                    print ("It took you " + str(guessNumber - 1) + " attempt(s) to find the weird wordle.")
                     print (" ")
                     endofgame = True
+                    startOver()
             elif password != passwordGuess:
                 if guessNumber == (allowedGuesses +1):
-                    print ("Player 1 wins. The word was '" + password + "'")
+                    print (playerOneWins)
+                    print ("The word was '" + password + "'.")
                     print (" ")
                     endofgame = True
+                    startOver()
             else:
                 continue      
             
