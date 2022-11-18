@@ -24,7 +24,7 @@ if __name__ == "__main__":
     print("KEY:")
     print("✔ - Letter is correct and in the correct position.")
     print("+ - Letter is correct but not in the correct position.")
-    print("X - Letter is incorrect.")
+    print("x - Letter is incorrect.")
     print(" ")
     print("Player 1 - Using only alphabetic letters, enter a 5 character password:")
       
@@ -69,7 +69,7 @@ if __name__ == "__main__":
             elif letter in password:
                 pattern += "+"
             else:
-                pattern += "X"
+                pattern += "x"
         return ''.join(pattern)      
  
  # This function contains a while loop to iterate through the number of guesses and check has two possible outcomes
