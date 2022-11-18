@@ -77,11 +77,10 @@ if __name__ == "__main__":
         validationComplete = False
         while validationComplete == False:
             passwordGuess = input()
-            if passwordGuess.isalpha and len(passwordGuess) == 5:
+            if passwordGuess.isalpha() == True and len(passwordGuess) == 5:
                    validationComplete == True
                    return passwordGuess.upper()
             else:
-                validationComplete == True
                 print("You made a mistake, your guess was either the wrong length or wasnt alaphabetic characters. Try again.")
  
  # This function will check the users guess by enumerating through each letter using an index (i) and add a symbol to the pattern.
