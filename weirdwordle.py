@@ -4,6 +4,7 @@ import getpass
 password = ""
 passwordGuess = ""
 allowedGuesses = 5
+wordlength = 5
 
 # Below I used an Ascii art text generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 # Just copy and paste into a string varible, dont forget to use x3 quatation marks (""") at open and close to use multiline text.
@@ -63,7 +64,7 @@ if __name__ == "__main__":
         validationPassed = False
         while validationPassed == False:
             password = getpass.getpass()
-            if password.isalpha() == True and len(password) == 5:
+            if password.isalpha() == True and len(password) == wordlength:
                 validationPassed == True
                 return password.upper()
             else:
@@ -77,7 +78,7 @@ if __name__ == "__main__":
         validationComplete = False
         while validationComplete == False:
             passwordGuess = input()
-            if passwordGuess.isalpha() == True and len(passwordGuess) == 5:
+            if passwordGuess.isalpha() == True and len(passwordGuess) == wordlength:
                    validationComplete == True
                    return passwordGuess.upper()
             else:
@@ -112,7 +113,8 @@ if __name__ == "__main__":
         password = validatePassword()
         
         while endofgame == False:
-            print("Guess number " + str(guessNumber))
+            print("------------------------------------")
+            print("Attempt number " + str(guessNumber))
             print("Player 2, please make your guess:")
             passwordGuess = validateGuess()
             pattern = checkGuess(password, passwordGuess)
@@ -122,7 +124,7 @@ if __name__ == "__main__":
             if password == passwordGuess:
                 if guessNumber < (allowedGuesses + 1):
                     print (playerTwoWins)
-                    print ("It took you " + str(guessNumber - 1) + " attempt(s) to find the weird wordle.")
+                    print ("It took you " + str(guessNumber - 1) + " attempt(s) to guess the weird wordle.")
                     print (" ")
                     endofgame = True
                     startOver()
