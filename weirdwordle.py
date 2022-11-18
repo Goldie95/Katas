@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print("INSTRUCTIONS:")
     print("- This is a 2 player game.")
     print("- Player 1 will enter a password exactly 5 letters long.")
-    print("- Player 2 will get chances to guess the password to win.")
+    print("- Player 2 will get 5 chances to guess the password to win.")
     print(" ")
     print("KEY:")
     print("✔ - Letter is correct and in the correct position.")
