@@ -10,7 +10,7 @@ allowedGuesses = 5
 wordlength = 5
 
 
-# Below I used an Ascii art text generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+# Below I used an ASCII art text generator https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 # Just copy and paste into a string varible, dont forget to use x3 quatation marks (""") at open and close to use multiline text.
 welcome = """
 *******************************************************************
@@ -19,6 +19,8 @@ welcome = """
 *   \ \/  \/ / _ \ | '__/ _` | \ \/  \/ / _ \| '__/ _` | |/ _ \   *
 *    \  /\  /  __/ | | | (_| |  \  /\  / (_) | | | (_| | |  __/   *
 *     \/  \/ \___|_|_|  \__,_|   \/  \/ \___/|_|  \__,_|_|\___|   *
+*                                                                 *
+*                        1 Player Version                         *
 *                                                                 *
 *******************************************************************
 """
@@ -59,10 +61,7 @@ if __name__ == "__main__":
     print("x - Letter is incorrect.")
     print(" ")
       
- # This function will validate and retun the password (in uppercase) by checking if the input is:
- # 1. Alphabetic 
- # 2. 5 characters in length
- # It also uses the getpass function to hide the entry so player 2 cannot see the input.
+ # This function will select the txt file depending on the difficulty rating chosen in def game and select a random word.
     
     def getrandomPassword(wordfile):
         with open (wordfile,'r') as filestream:
@@ -73,7 +72,7 @@ if __name__ == "__main__":
         
  # This function will validate and return the guess (in uppercase) by checking if the input is:
  # 1. Alphabetic 
- # 2. 5 characters in length 
+ # 2. The same length characters as the diffuclty chosen.
                  
     def validateGuess(difficulty):
         validationComplete = False
@@ -113,7 +112,8 @@ if __name__ == "__main__":
         difficultyList = ["Very Easy", "Easy", "Medium", "Hard", "Very Hard" ]
         currentDirectory = os.getcwd()
         
-        print("Select how many letters:")
+ # In this part of the def game fuction we letting the user select their difficulty.         
+        print("Select your difficulty:")
         print (difficultyoptions)
         while True:
             difficulty = input(":")
@@ -123,10 +123,10 @@ if __name__ == "__main__":
                 print ("You have selected difficulty level '" + difficultyList[(int(difficulty)-1)] + "'")
                 print ("Good Luck!")
                 break
-        
+ # Here we are building the string to find the correct word txt file in the wordLists folder and using it to get a random word.
         wordfile = (currentDirectory + "/wordLists/" + str((int(difficulty)) + 2) + "LetterWords.txt")
         password = getrandomPassword(wordfile)
-        
+ #       print(password) # TEST ONLY
         while endofgame == False:
             print("------------------------------------")
             print("Attempt number " + str(guessNumber))
@@ -136,15 +136,13 @@ if __name__ == "__main__":
             print (pattern)
             guessNumber = guessNumber + 1
         
-            if password == passwordGuess:
-                if guessNumber < (allowedGuesses + 1):
+            if password == passwordGuess and guessNumber <= (allowedGuesses + 1):
                     print (playerWins)
                     print ("It took you " + str(guessNumber - 1) + " attempt(s) to guess the weird wordle.")
                     print (" ")
                     endofgame = True
                     startOver()
-            elif password != passwordGuess:
-                if guessNumber == (allowedGuesses +1):
+            elif password != passwordGuess and guessNumber == (allowedGuesses + 1):
                     print (playerLoses)
                     print ("The word was '" + password + "'.")
                     print (" ")

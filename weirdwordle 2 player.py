@@ -16,6 +16,8 @@ welcome = """
 *    \  /\  /  __/ | | | (_| |  \  /\  / (_) | | | (_| | |  __/   *
 *     \/  \/ \___|_|_|  \__,_|   \/  \/ \___/|_|  \__,_|_|\___|   *
 *                                                                 *
+*                        2 Player Version                         *
+*                                                                 *
 *******************************************************************
 """
 playerOneWins = """
@@ -28,7 +30,6 @@ ______ _                         __    _    _ _           _
                 __/ |                                       
                |___/ 
 """
-
 playerTwoWins = """
 ______ _                         _____   _    _ _           _ 
 | ___ \ |                       / __  \ | |  | (_)         | |
@@ -120,16 +121,13 @@ if __name__ == "__main__":
             pattern = checkGuess(password, passwordGuess)
             print (pattern)
             guessNumber = guessNumber + 1
-        
-            if password == passwordGuess:
-                if guessNumber < (allowedGuesses + 1):
+            if password == passwordGuess and guessNumber <= (allowedGuesses + 1):
                     print (playerTwoWins)
                     print ("It took you " + str(guessNumber - 1) + " attempt(s) to guess the weird wordle.")
                     print (" ")
                     endofgame = True
                     startOver()
-            elif password != passwordGuess:
-                if guessNumber == (allowedGuesses +1):
+            elif password != passwordGuess and guessNumber == (allowedGuesses + 1):
                     print (playerOneWins)
                     print ("The word was '" + password + "'.")
                     print (" ")
