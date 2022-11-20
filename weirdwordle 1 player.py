@@ -103,8 +103,8 @@ if __name__ == "__main__":
         input("Press Enter to start a new game...")
  
  # This function contains a while loop to iterate through the number of guesses and check has two possible outcomes
- # outcome 1 - Password is guessed correctly within the allowed guesses - Player 2 wins.
- # outcome 2 - Password isnt guessed correctly wihtin the allowed guesses - Player 1 wins and word is displayed.         
+ # outcome 1 - Password is guessed correctly within the allowed guesses - You win!
+ # outcome 2 - Password isnt guessed correctly wihtin the allowed guesses - You Lose!      
             
     def game():
         endofgame = False
